@@ -1,12 +1,8 @@
-# AngularMaterialApp
+# Angular-App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-## Angular Material 
-version 13.0.0
---module=app - this command will automatically import newly created MaterialModule module and add into AppModule imports[] array.
-
-ng g m material --module=app
+# Bootstrap CSS Framework v3
 
 ## Development server
 
