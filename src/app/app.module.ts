@@ -16,6 +16,7 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShortenPipe } from './pipe/shorten.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
+import { ReversePipe } from './pipe/reverse.pipe';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { FilterPipe } from './pipe/filter.pipe';
         RecipeStartComponent,
         RecipeEditComponent,
         ShortenPipe,
-        FilterPipe
+        FilterPipe,
+        ReversePipe
         
     ],
     imports: [
