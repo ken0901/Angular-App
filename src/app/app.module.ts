@@ -15,6 +15,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShortenPipe } from './pipe/shorten.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { ShortenPipe } from './pipe/shorten.pipe';
         DropdownDirective,
         RecipeStartComponent,
         RecipeEditComponent,
-        ShortenPipe
+        ShortenPipe,
+        FilterPipe
         
     ],
     imports: [
