@@ -18,6 +18,8 @@ import { ShortenPipe } from './pipe/shorten.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { ReversePipe } from './pipe/reverse.pipe';
 import { SortPipe } from './pipe/sort.pipe';
+import { HttpAppComponent } from './http/http-app/http-app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -35,14 +37,16 @@ import { SortPipe } from './pipe/sort.pipe';
         ShortenPipe,
         FilterPipe,
         ReversePipe,
-        SortPipe
+        SortPipe,
+        HttpAppComponent
         
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
        
     ],
     providers: [
