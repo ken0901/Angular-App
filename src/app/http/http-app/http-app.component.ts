@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { Post } from './post.model';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-http-app',
@@ -12,48 +12,35 @@ import { Post } from './post.model';
 export class HttpAppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
-  baseUrl = 'https://angular-app-80c82-default-rtdb.firebaseio.com/posts.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
-    this.fetchPosts();
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe(posts =>{
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    });
   }
 
-  onCreatePost(postData: {title: string; content: string}){
+  onCreatePost(postData: Post){
     // send HTTP request
-    this.http.post<{name: string}>(this.baseUrl, postData)
-        .subscribe(responseData =>{
-          console.log(responseData);
-    });
+    this.postsService.createAndStorePost(postData.title, postData.content);
   }
 
   onFetchPosts(){
     // Send Http Request
-    this.fetchPosts();
+    this.postsService.fetchPosts().subscribe(posts =>{
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    });
   }
 
 
   onClearPosts(){
     // Send Http Request
+    this.postsService.deletePosts().subscribe(() =>{
+      this.loadedPosts = [];
+    });
   }
-
-  private fetchPosts(){
-    this.isFetching = true;
-    this.http.get<{[key: string]: Post}>(this.baseUrl)
-        .pipe(
-          map((responseData) => {
-            const postsArray: Post[] = [];
-            for(const key in responseData){
-              if(responseData.hasOwnProperty(key)){
-                postsArray.push({...responseData[key], id: key});
-              }
-            }
-            return postsArray;
-          }))
-        .subscribe(posts => {
-          this.isFetching = false;
-          this.loadedPosts = posts;
-    })
-  }  
 }
