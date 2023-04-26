@@ -19,7 +19,9 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { ReversePipe } from './pipe/reverse.pipe';
 import { SortPipe } from './pipe/sort.pipe';
 import { HttpAppComponent } from './http/http-app/http-app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './http/http-app/auth-interceptor.service';
+import { LoggingInterceptorService } from './http/http-app/logging-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -50,6 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
        
     ],
     providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
     ],
     bootstrap: [AppComponent]
 })
