@@ -1,25 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { Post } from './post.model';
 import { PostsService } from './posts.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-http-app',
   templateUrl: './http-app.component.html',
   styleUrls: ['./http-app.component.css']
 })
-export class HttpAppComponent implements OnInit {
+export class HttpAppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
   isFetching = false;
+  error = null;
+  private errorSub: Subscription;
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
+    this.errorSub = this.postsService.error.subscribe(errorMessage => {
+      this.error = errorMessage;
+    });
+
     this.isFetching = true;
     this.postsService.fetchPosts().subscribe(posts =>{
       this.isFetching = false;
       this.loadedPosts = posts;
+    }, error =>{
+      this.error = error.message;
     });
   }
 
@@ -33,6 +42,8 @@ export class HttpAppComponent implements OnInit {
     this.postsService.fetchPosts().subscribe(posts =>{
       this.isFetching = false;
       this.loadedPosts = posts;
+    }, error =>{
+      this.error = error.message;
     });
   }
 
@@ -42,5 +53,9 @@ export class HttpAppComponent implements OnInit {
     this.postsService.deletePosts().subscribe(() =>{
       this.loadedPosts = [];
     });
+  }
+
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe();
   }
 }
