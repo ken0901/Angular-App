@@ -19,17 +19,22 @@ export class HttpAppComponent implements OnInit, OnDestroy {
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
-    this.errorSub = this.postsService.error.subscribe(errorMessage => {
-      this.error = errorMessage;
-    });
+    this.errorSub = this.postsService.error.subscribe(
+      errorMessage => {
+        this.error = errorMessage;
+      }
+    );
 
     this.isFetching = true;
-    this.postsService.fetchPosts().subscribe(posts =>{
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    }, error =>{
-      this.error = error.message;
-    });
+    this.postsService.fetchPosts().subscribe(
+      posts =>{
+        this.isFetching = false;
+        this.loadedPosts = posts;
+      }, error =>{
+        this.isFetching = false;
+        this.error = error.message;
+      }
+    );
   }
 
   onCreatePost(postData: Post){
@@ -39,12 +44,16 @@ export class HttpAppComponent implements OnInit, OnDestroy {
 
   onFetchPosts(){
     // Send Http Request
-    this.postsService.fetchPosts().subscribe(posts =>{
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    }, error =>{
-      this.error = error.message;
-    });
+    this.postsService.fetchPosts().subscribe(
+      posts =>{
+        this.isFetching = false;
+        this.loadedPosts = posts;
+      }, error =>{
+        this.isFetching = false;
+        this.error = error.message;
+        console.log(error);
+      }
+    );
   }
 
 
@@ -53,6 +62,10 @@ export class HttpAppComponent implements OnInit, OnDestroy {
     this.postsService.deletePosts().subscribe(() =>{
       this.loadedPosts = [];
     });
+  }
+
+  onHandleError(){
+    this.error = null;
   }
 
   ngOnDestroy(): void {
