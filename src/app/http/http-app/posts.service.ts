@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
 import { catchError, map } from 'rxjs/operators';
@@ -16,26 +16,35 @@ export class PostsService {
         
         const postData: Post = {title: title, content: content};
         this.http
-        .post<{ name: string }>(this.baseUrl, postData)
-        .subscribe((responseData) => {
-            console.log(responseData);
-        }, error =>{
-          this.error.next(error.message);
-        });
+          .post<{ name: string }>
+            (this.baseUrl, postData)
+              .subscribe(
+                (responseData) => {
+                  console.log(responseData);
+                }, error =>{
+                  this.error.next(error.message);
+                }
+              );
     }
 
     fetchPosts(){
-        return this.http.get<{[key: string]: Post}>(this.baseUrl)
-        .pipe(
-          map((responseData) => {
-            const postsArray: Post[] = [];
-            for(const key in responseData){
-              if(responseData.hasOwnProperty(key)){
-                postsArray.push({...responseData[key], id: key});
-              }
+        return this.http.get<{[key: string]: Post}>
+          (this.baseUrl,
+            {
+              headers: new HttpHeaders({ 'Custom-Header': 'Hello'})
             }
-            return postsArray;
-          }),
+          )
+          .pipe(
+            map((responseData) => {
+              const postsArray: Post[] = [];
+              for(const key in responseData){
+                if(responseData.hasOwnProperty(key)){
+                  postsArray.push({...responseData[key], id: key});
+                }
+              }
+              return postsArray;
+            }
+          ),
             catchError(errorRes => {
               // Send to analytics server
               return throwError(errorRes);
