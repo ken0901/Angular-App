@@ -22,6 +22,7 @@ import { HttpAppComponent } from './http/http-app/http-app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './http/http-app/auth-interceptor.service';
 import { LoggingInterceptorService } from './http/http-app/logging-interceptor.service';
+import { AuthComponent } from './auth/auth/auth.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { LoggingInterceptorService } from './http/http-app/logging-interceptor.s
         FilterPipe,
         ReversePipe,
         SortPipe,
-        HttpAppComponent
+        HttpAppComponent,
+        AuthComponent
         
     ],
     imports: [
