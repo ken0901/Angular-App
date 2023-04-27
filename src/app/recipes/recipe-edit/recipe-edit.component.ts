@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
-import { Recipe } from '../recipe.modle';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
