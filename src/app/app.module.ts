@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './http/http-app/auth-interceptor.service';
 import { LoggingInterceptorService } from './http/http-app/logging-interceptor.service';
 import { AuthComponent } from './auth/auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { AuthComponent } from './auth/auth/auth.component';
         ReversePipe,
         SortPipe,
         HttpAppComponent,
-        AuthComponent
+        AuthComponent,
+        LoadingSpinnerComponent
         
     ],
     imports: [
@@ -54,8 +56,8 @@ import { AuthComponent } from './auth/auth/auth.component';
        
     ],
     providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
+        // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+        // {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
     ],
     bootstrap: [AppComponent]
 })
