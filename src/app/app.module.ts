@@ -24,6 +24,7 @@ import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
 import { LoggingInterceptorService } from './http/http-app/logging-interceptor.service';
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
+import { AlertComponet } from './shared/alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
         SortPipe,
         HttpAppComponent,
         AuthComponent,
-        LoadingSpinnerComponent
+        LoadingSpinnerComponent,
+        AlertComponet
         
     ],
     imports: [
