@@ -20,7 +20,7 @@ import { ReversePipe } from './pipe/reverse.pipe';
 import { SortPipe } from './pipe/sort.pipe';
 import { HttpAppComponent } from './http/http-app/http-app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptorService } from './http/http-app/auth-interceptor.service';
+import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
 import { LoggingInterceptorService } from './http/http-app/logging-interceptor.service';
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
@@ -56,6 +56,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
        
     ],
     providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
         // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
         // {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
     ],
