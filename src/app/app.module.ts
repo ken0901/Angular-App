@@ -25,6 +25,7 @@ import { LoggingInterceptorService } from './http/http-app/logging-interceptor.s
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 import { AlertComponet } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { AlertComponet } from './shared/alert/alert.component';
         HttpAppComponent,
         AuthComponent,
         LoadingSpinnerComponent,
-        AlertComponet
+        AlertComponet,
+        PlaceholderDirective
         
     ],
     imports: [
@@ -62,7 +64,10 @@ import { AlertComponet } from './shared/alert/alert.component';
         // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
         // {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptorService, multi: true}
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    // entryComponents: [ -- Angular 9 or higher it could omit.
+    //     AlertComponet
+    // ]
 })
 export class AppModule {
 }
