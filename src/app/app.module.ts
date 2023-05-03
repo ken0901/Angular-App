@@ -15,27 +15,20 @@ import { ShortenPipe } from './pipe/shorten.pipe';
 import { SortPipe } from './pipe/sort.pipe';
 import { RecipesRoutingModule } from './recipes/recipes-routing.module';
 import { RecipesModule } from './recipes/recipes.module';
-import { AlertComponet } from './shared/alert/alert.component';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
-import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { ShoppingListroutingModule } from './shopping-list/shopping-list-routing.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        DropdownDirective,
         ShortenPipe,
         FilterPipe,
         ReversePipe,
         SortPipe,
         HttpAppComponent,
         AuthComponent,
-        LoadingSpinnerComponent,
-        AlertComponet,
-        PlaceholderDirective
         
     ],
     imports: [
@@ -47,7 +40,8 @@ import { ShoppingListroutingModule } from './shopping-list/shopping-list-routing
         HttpClientModule,
         RecipesModule,
         ShoppingListModule,
-        ShoppingListroutingModule
+        ShoppingListroutingModule,
+        SharedModule
        
     ],
     providers: [
