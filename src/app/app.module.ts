@@ -20,6 +20,7 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipesModule } from './recipes/recipes.module';
+import { RecipesRoutingModule } from './recipes/recipes-routing.module';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { RecipesModule } from './recipes/recipes.module';
     imports: [
         BrowserModule,
         AppRoutingModule,
+        RecipesRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
