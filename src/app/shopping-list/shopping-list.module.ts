@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { ShoppingListComponent } from "./shopping-list.component";
+import { ShoppingListroutingModule } from "./shopping-list-routing.module";
 
 @NgModule({
     declarations:[
@@ -13,7 +14,8 @@ import { ShoppingListComponent } from "./shopping-list.component";
     imports:[
         RouterModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        ShoppingListroutingModule
     ]
 })
 export class ShoppingListModule {}

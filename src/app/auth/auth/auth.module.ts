@@ -15,7 +15,7 @@ import { HttpAppComponent } from "src/app/http/http-app/http-app.component";
         FormsModule,
         SharedModule,
         RouterModule.forChild([
-            { path: 'auth', component: AuthComponent}
+            { path: '', component: AuthComponent}
         ])
     ]
 })
