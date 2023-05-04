@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../services/shopping-list.service';
 import { Subscription } from 'rxjs';
+import { LoggingService } from '../services/logging.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,7 +13,8 @@ export class ShoppingListComponent implements OnInit {
   ingredients !: Ingredient[];
   private igChangeSub!: Subscription;
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService,
+              private loggingService: LoggingService) { }
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
@@ -21,6 +23,7 @@ export class ShoppingListComponent implements OnInit {
         this.ingredients = ingredients;
       }
     );
+    this.loggingService.printLog('Hello from ShoppingListComponent ngOninit');
   }
 
   ngOnDestory(): void{
