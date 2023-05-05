@@ -4,6 +4,7 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { User } from "../auth/auth/user.model";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 export interface AuthResponseData{
     kind: string;
@@ -23,7 +24,7 @@ export class AuthService{
     constructor(private http: HttpClient,
                 private router: Router){}
     
-    API_KEY = '';
+    API_KEY = environment.firebaseAPIKey;
     baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:';
     signUpUrl = 'signUp?key='
     signInUrl= 'signInWithPassword?key=';
