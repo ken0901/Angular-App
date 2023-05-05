@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core.module';
 import { HeaderComponent } from './header/header/header.component';
 import { SharedModule } from './shared/shared.module';
+import { DetailsComponent } from './standalone/welcome/details/details.component';
+import { StandAloneModule } from './standalone/standalone.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
         HttpClientModule,
         SharedModule,
         CoreModule,
+        StandAloneModule
     ],
     bootstrap: [AppComponent],
     // entryComponents: [ -- Angular 9 or higher it could omit.
