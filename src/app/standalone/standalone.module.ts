@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 
-import { HighlightDirective } from './shared/highlight.directive';
 import { DetailsComponent } from './welcome/details/details.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { StandAloneSharedModule } from './shared/stand-alone-shared.module';
 
 @NgModule({
   declarations: [
-      HighlightDirective,
-      DetailsComponent,
       WelcomeComponent,
   ],
-  exports: [HighlightDirective],
+  imports:[
+    BrowserModule,
+    StandAloneSharedModule,
+    DetailsComponent,
+  ],
+  exports: [
+    WelcomeComponent
+  ],
 })
 export class StandAloneModule {}
