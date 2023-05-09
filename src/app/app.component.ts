@@ -19,6 +19,23 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       })),
       transition('normal => highlighted', animate(300)),
       transition('highlighted => normal', animate(800)),
+    ]),
+    trigger('wildState',[
+      state('normal',style({
+        'background-color': 'red',
+        transform: 'translateX(0) scale(1)'
+      })),
+      state('highlighted', style({
+        backgroundColor: 'blue',
+        transform: 'translateX(100px) scale(1)'
+      })),
+      state('shrunken', style({
+        backgroundColor: 'green',
+        transform: 'translateX(0) scale(0.5)'
+      })),
+      transition('normal => highlighted', animate(300)),
+      transition('highlighted => normal', animate(800)),
+      transition('shrunken <=> *', animate(500))
     ])
   ]
 })
@@ -35,6 +52,7 @@ export class AppComponent implements OnInit{
   // Angular Animation project
   list = ['Milk', 'Sugar', 'Bread'];
   state = 'normal';
+  wildState = 'normal';
   onDelete(item: string) {
     this.list.splice(this.list.indexOf(item), 1);
   }
@@ -42,9 +60,11 @@ export class AppComponent implements OnInit{
     this.list.push(item);
   }
   onShrink() {
+    this.wildState = 'shrunken';
   }
   onAnimate() {
     this.state == 'normal' ? this.state='highlighted' : this.state = 'normal';
+    this.wildState == 'normal' ? this.wildState='highlighted' : this.wildState = 'normal';
   }
   
 }
