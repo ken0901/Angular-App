@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { LoggingService } from './services/logging.service';
-import { trigger, state, style } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,10 @@ import { trigger, state, style } from '@angular/animations';
       })),
       state('highlighted', style({
         backgroundColor: 'blue',
-        transForm: 'translateX(100px)'
-      }))
+        transform: 'translateX(100px)'
+      })),
+      transition('normal => highlighted', animate(300)),
+      transition('highlighted => normal', animate(800)),
     ])
   ]
 })
@@ -33,15 +35,16 @@ export class AppComponent implements OnInit{
   // Angular Animation project
   list = ['Milk', 'Sugar', 'Bread'];
   state = 'normal';
-  onDelete(item) {
+  onDelete(item: string) {
     this.list.splice(this.list.indexOf(item), 1);
   }
-  onAdd(item) {
+  onAdd(item: string) {
     this.list.push(item);
   }
   onShrink() {
   }
   onAnimate() {
+    this.state == 'normal' ? this.state='highlighted' : this.state = 'normal';
   }
   
 }
