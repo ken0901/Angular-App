@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { LoggingService } from './services/logging.service';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -94,10 +94,15 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
         ]))
       ]),
       transition('* => void',[
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0
-        }))
+        group([
+          animate(300, style({
+            transform: 'translateX(100px)',
+            opacity: 0
+          })),
+          animate(300, style({
+            color: 'red'
+          }))
+        ])
       ])
     ]),
   ]
@@ -128,6 +133,14 @@ export class AppComponent implements OnInit{
   onAnimate() {
     this.state == 'normal' ? this.state='highlighted' : this.state = 'normal';
     this.wildState == 'normal' ? this.wildState='highlighted' : this.wildState = 'normal';
+  }
+
+  animationStarted(event){
+    console.log(event);
+  }
+
+  animationEnded(event){
+    console.log(event);
   }
   
 }
