@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { LoggingService } from './services/logging.service';
-import { Post } from './offline/post/post.model';
+// import { Post } from './offline/post/post.model';
 import { HttpClient } from '@angular/common/http';
 
 // Animations
@@ -122,16 +122,16 @@ export class AppComponent implements OnInit{
       this.authService.autoLogin();
       this.loggingService.printLog('Hello From AppComponent ngOnInit');
 
-      this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts').subscribe(
-        fetchedPosts => (
-          this.posts = fetchedPosts
-        )
-      );
+      // this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts').subscribe(
+      //   fetchedPosts => (
+      //     this.posts = fetchedPosts
+      //   )
+      // );
     }
   
 
   // Offline Capabilities with Service workers
-  posts: Post[] = [];
+  // posts: Post[] = [];
   
   // Angular Animation project
   // list = ['Milk', 'Sugar', 'Bread'];
