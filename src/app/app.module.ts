@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core.module';
 import { HeaderComponent } from './header/header/header.component';
 import { SharedModule } from './shared/shared.module';
+import { PostComponent } from './offline/post/post.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
+        PostComponent
     ],
     imports: [
         BrowserModule,

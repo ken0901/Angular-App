@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { LoggingService } from './services/logging.service';
-import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
+import { Post } from './offline/post/post.model';
+import { HttpClient } from '@angular/common/http';
+
+// Animations
+//import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations:[
+  // Animations
+  /*animations:[
     trigger('divState',[
       state('normal',style({
         'background-color': 'red',
@@ -105,42 +110,53 @@ import { trigger, state, style, transition, animate, keyframes, group } from '@a
         ])
       ])
     ]),
-  ]
+  ]*/
 })
 export class AppComponent implements OnInit{
   
   constructor(private authService: AuthService,
-    private loggingService: LoggingService){}
+              private loggingService: LoggingService,
+              private http: HttpClient){}
     
     ngOnInit(): void {
       this.authService.autoLogin();
       this.loggingService.printLog('Hello From AppComponent ngOnInit');
+
+      this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts').subscribe(
+        fetchedPosts => (
+          this.posts = fetchedPosts
+        )
+      );
     }
   
+
+  // Offline Capabilities with Service workers
+  posts: Post[] = [];
+  
   // Angular Animation project
-  list = ['Milk', 'Sugar', 'Bread'];
-  state = 'normal';
-  wildState = 'normal';
-  onDelete(item: string) {
-    this.list.splice(this.list.indexOf(item), 1);
-  }
-  onAdd(item: string) {
-    this.list.push(item);
-  }
-  onShrink() {
-    this.wildState = 'shrunken';
-  }
-  onAnimate() {
-    this.state == 'normal' ? this.state='highlighted' : this.state = 'normal';
-    this.wildState == 'normal' ? this.wildState='highlighted' : this.wildState = 'normal';
-  }
+  // list = ['Milk', 'Sugar', 'Bread'];
+  // state = 'normal';
+  // wildState = 'normal';
+  // onDelete(item: string) {
+  //   this.list.splice(this.list.indexOf(item), 1);
+  // }
+  // onAdd(item: string) {
+  //   this.list.push(item);
+  // }
+  // onShrink() {
+  //   this.wildState = 'shrunken';
+  // }
+  // onAnimate() {
+  //   this.state == 'normal' ? this.state='highlighted' : this.state = 'normal';
+  //   this.wildState == 'normal' ? this.wildState='highlighted' : this.wildState = 'normal';
+  // }
 
-  animationStarted(event){
-    console.log(event);
-  }
+  // animationStarted(event){
+  //   console.log(event);
+  // }
 
-  animationEnded(event){
-    console.log(event);
-  }
+  // animationEnded(event){
+  //   console.log(event);
+  // }
   
 }
