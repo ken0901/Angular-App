@@ -8,12 +8,14 @@ import { CoreModule } from './core.module';
 import { HeaderComponent } from './header/header/header.component';
 import { SharedModule } from './shared/shared.module';
 import { PostComponent } from './offline/post/post.component';
+import { UserComponent } from './testing/user/user.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        PostComponent
+        PostComponent,
+        UserComponent
     ],
     imports: [
         BrowserModule,
