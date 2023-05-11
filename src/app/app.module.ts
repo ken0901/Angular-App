@@ -9,13 +9,15 @@ import { HeaderComponent } from './header/header/header.component';
 import { SharedModule } from './shared/shared.module';
 import { PostComponent } from './offline/post/post.component';
 import { UserComponent } from './testing/user/user.component';
+import { ReverseTestingPipe } from './testing/reverseTesting.pipe';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         PostComponent,
-        UserComponent
+        UserComponent,
+        ReverseTestingPipe
     ],
     imports: [
         BrowserModule,
